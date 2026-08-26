@@ -1,0 +1,56 @@
+openapi: 3.0.3
+info:
+  title: Voucher API
+  description: Voucher API
+  version: 1.0.0
+servers:
+  - url: 'https://localhost:5000'
+paths:
+  /generate_n_amount_of_vouchers:
+    post:
+      operationId: controllers.voucher_controller.generate_n_amount_of_vouchers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                voucher_type:
+                  type: string
+                  enum:
+                    - interior_clean
+                    - exterior_clean
+                    - seat_clean
+                    - full_clean
+                    - full_clean_with_seat_clean
+                amount_of_vouchers:
+                  type: number
+      responses:
+        "201":
+          description: Created
+        "500":
+          description: Internal Server Error
+  /verify_voucher:
+    post:
+      operationId: controllers.voucher_controller.verify_voucher_validity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                signature:
+                  type: string
+      responses:
+        "201":
+          description: Created
+        "401":
+          description: Invalid Signature
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
