@@ -1,12 +1,13 @@
 import logging
 
 from interactor.voucher_interactor import retrieve_voucher_metadata_from_voucher_id
+from main import BASE_DIR
 from models.voucher_exceptions import BadRequest, InternalServerError, InvalidSignature
 from util.voucher_util import generate_private_and_public_keys, generate_vouchers, verify_signature, \
     validate_request_body, validate_voucher_type_and_voucher_amount, configure_logger
 
-keys_directory = r"C:\Users\MPENDULO5\Downloads\Personal\voucher_generator\keys"
-storage_directory = r"C:\Users\MPENDULO5\Downloads\Personal\voucher_generator\voucher_qr_codes"
+keys_directory = f"{BASE_DIR}\\keys"
+storage_directory = f"{BASE_DIR}\\voucher_qr_codes"
 
 private_key, public_key = generate_private_and_public_keys(keys_directory)
 
