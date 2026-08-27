@@ -1,9 +1,15 @@
+import base64
+import json
 import logging
+import os
 
 import firebase_admin
+from dotenv import load_dotenv
 from firebase_admin import credentials, db
 
-cred = credentials.Certificate(r"C:\Users\MPENDULO5\Downloads\Personal\voucher_generator\keys\serviceAccountKey.json")
+load_dotenv()
+firebase_creds = json.loads(base64.b64decode(os.getenv("FIREBASE_CREDENTIALS")).decode("utf-8"))
+cred = credentials.Certificate(firebase_creds)
 firebase_admin.initialize_app(cred, {
     "databaseURL": "https://mobile-wash-voucher-generator-default-rtdb.firebaseio.com/"
 })
