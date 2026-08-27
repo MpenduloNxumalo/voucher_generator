@@ -1,13 +1,14 @@
 import logging
 import os
+from pathlib import Path
 
 from interactor.voucher_interactor import retrieve_voucher_metadata_from_voucher_id
-from main import BASE_DIR
+from main import BASE_DIR, DEBUG
 from models.voucher_exceptions import BadRequest, InternalServerError, InvalidSignature
 from util.voucher_util import generate_private_and_public_keys, generate_vouchers, verify_signature, \
     validate_request_body, validate_voucher_type_and_voucher_amount, configure_logger
 
-keys_directory = f"{os.path.join(os.path.join(BASE_DIR, "etc"),"secrets")}"
+keys_directory = f"{os.path.join(os.path.join(BASE_DIR, "etc"),"secrets") if DEBUG else Path("/etc/secrets")}"
 storage_directory = f"{os.path.join(BASE_DIR, "voucher_qr_codes")}"
 
 private_key, public_key = generate_private_and_public_keys(keys_directory)
