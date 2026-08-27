@@ -1,2 +1,11 @@
-./keys
-*.json
+# Secrets
+keys/
+*.pem
+*.key
+
+# Service account credentials
+serviceAccountKey.json
+
+# Environment secrets
+.env
+.env.*
