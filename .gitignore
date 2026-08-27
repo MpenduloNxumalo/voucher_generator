@@ -9,3 +9,7 @@ serviceAccountKey.json
 # Environment secrets
 .env
 .env.*
+
+# IntelliJ IDEA
+.idea/
+*.iml
