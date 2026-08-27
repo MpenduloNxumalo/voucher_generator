@@ -6,7 +6,6 @@ import os
 import shutil
 from datetime import timedelta
 
-import cv2
 import qrcode
 from colorama import init
 from cryptography.exceptions import InvalidSignature

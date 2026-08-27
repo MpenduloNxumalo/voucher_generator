@@ -7,7 +7,7 @@ from models.voucher_exceptions import BadRequest, InternalServerError, InvalidSi
 from util.voucher_util import generate_private_and_public_keys, generate_vouchers, verify_signature, \
     validate_request_body, validate_voucher_type_and_voucher_amount, configure_logger
 
-keys_directory = f"{os.path.join(BASE_DIR, "keys")}"
+keys_directory = f"{os.path.join(os.path.join(BASE_DIR, "etc"),"secrets")}"
 storage_directory = f"{os.path.join(BASE_DIR, "voucher_qr_codes")}"
 
 private_key, public_key = generate_private_and_public_keys(keys_directory)
