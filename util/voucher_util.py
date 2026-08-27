@@ -16,7 +16,6 @@ from cryptography.hazmat.primitives.serialization import (
     Encoding, PrivateFormat, PublicFormat, NoEncryption, load_pem_private_key,
     load_pem_public_key
 )
-from pyzbar.pyzbar import decode
 
 from interactor.voucher_interactor import add_voucher_metadata_to_db, add_voucher_to_db, delete_voucher_from_db
 from models import voucher_exceptions
@@ -185,12 +184,3 @@ def generate_vouchers(private_key, number_of_vouchers, voucher_type, storage_dir
     delete_qr_code_from_vouchers_qr_codes(storage_directory)
 
     return vouchers_list
-
-
-def simulate_qr_scan(path):
-    img = cv2.imread(path)
-    results = decode(img)
-    if not results:
-        return {}
-    data = results[0].data.decode("utf-8")
-    return json.loads(data)
