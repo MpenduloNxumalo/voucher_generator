@@ -6,6 +6,15 @@ info:
 servers:
   - url: 'https://localhost:5000'
 paths:
+  /:
+    get:
+      operationId: controllers.voucher_controller.is_api_available
+      summary: Assess whether api is available
+      responses:
+        "201":
+          description: Created
+        "500":
+          description: Internal Server Error
   /generate_n_amount_of_vouchers:
     post:
       operationId: controllers.voucher_controller.generate_n_amount_of_vouchers

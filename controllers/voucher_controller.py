@@ -14,6 +14,10 @@ storage_directory = f"{os.path.join(BASE_DIR, "voucher_qr_codes")}"
 private_key, public_key = generate_private_and_public_keys(keys_directory)
 
 
+def is_api_available():
+    return {"is_api_available": True}
+
+
 def generate_n_amount_of_vouchers(body):
     try:
         voucher_type = body["voucher_type"]
@@ -44,3 +48,4 @@ def verify_voucher_validity(body):
         return False, e.status_code
     except InternalServerError as e:
         return False, e.status_code
+
